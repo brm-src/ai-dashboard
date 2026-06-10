@@ -4,89 +4,101 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Control Center</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   :root{
     --bg:#09090b;
     --surface:#111113;
-    --surface-hover:#18181b;
+    --surface-alt:#0d0d0d;
     --border:#27272a;
-    --border-subtle:#1e1e22;
+    --border-subtle:#1f1f1f;
     --text:#fafafa;
     --text-secondary:#a1a1aa;
     --text-muted:#52525b;
     --green:#22c55e;
-    --green-dim:rgba(34,197,94,.08);
+    --green-dim:rgba(34,197,94,.06);
+    --green-border:rgba(34,197,94,.25);
     --red:#ef4444;
-    --red-dim:rgba(239,68,68,.08);
-    --yellow:#eab308;
-    --yellow-dim:rgba(234,179,8,.08);
-    --blue:#3b82f6;
+    --red-dim:rgba(239,68,68,.06);
+    --red-border:rgba(239,68,68,.25);
+    --yellow:#f59e0b;
+    --yellow-dim:rgba(245,158,11,.06);
+    --yellow-border:rgba(245,158,11,.25);
     --purple:#a78bfa;
     --radius:16px;
     --radius-sm:10px;
-    --font:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',system-ui,sans-serif;
-    --mono:'SF Mono','Fira Code','Cascadia Code','JetBrains Mono',monospace;
+    --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+    --mono:'JetBrains Mono','SF Mono','Fira Code',monospace;
   }
   html{font-size:16px;-webkit-font-smoothing:antialiased}
   body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;padding:2.5rem;max-width:960px;margin:0 auto;line-height:1.5}
 
-  /* ── Hero ── */
-  .hero{margin-bottom:3rem}
-  .hero-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem}
-  .hero h1{font-size:1.1rem;font-weight:500;color:var(--text-secondary);letter-spacing:-.01em}
-  .refresh-btn{background:var(--surface);border:1px solid var(--border);color:var(--text-muted);padding:.45rem .9rem;border-radius:var(--radius-sm);font-size:.8rem;cursor:pointer;font-family:var(--mono);transition:all .15s}
+  /* ── Header ── */
+  .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:2.5rem}
+  .header h1{font-size:1.05rem;font-weight:500;color:var(--text-secondary);letter-spacing:-.01em}
+  .refresh-btn{background:var(--surface);border:1px solid var(--border);color:var(--text-muted);padding:.4rem .85rem;border-radius:var(--radius-sm);font-size:.78rem;cursor:pointer;font-family:var(--mono);transition:all .15s}
   .refresh-btn:hover{border-color:var(--text-muted);color:var(--text-secondary)}
 
-  .hero-stats{display:flex;gap:2rem;align-items:flex-end}
-  .hero-number{font-size:4.5rem;font-weight:700;line-height:1;letter-spacing:-.04em;font-family:var(--mono)}
-  .hero-number.ok{color:var(--green)}.hero-number.warn{color:var(--yellow)}.hero-number.bad{color:var(--red)}
-  .hero-label{font-size:.8rem;color:var(--text-muted);margin-top:.3rem}
-  .hero-divider{width:1px;height:48px;background:var(--border);align-self:center}
-  .hero-secondary{display:flex;flex-direction:column;gap:.8rem}
-  .hero-secondary .row{display:flex;gap:1.5rem}
-  .hero-secondary .item{display:flex;flex-direction:column}
-  .hero-secondary .val{font-size:1.5rem;font-weight:600;font-family:var(--mono);line-height:1}
-  .hero-secondary .lbl{font-size:.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin-top:.2rem}
+  /* ── Hero Stats Cards ── */
+  .stats-row{display:flex;gap:1rem;margin-bottom:2.5rem}
+  .stat-card{flex:1;background:var(--surface);border:1px solid var(--border-subtle);border-radius:var(--radius);padding:1.4rem 1.5rem;display:flex;flex-direction:column;align-items:center;text-align:center}
+  .stat-value{font-family:var(--mono);font-size:2.8rem;font-weight:700;line-height:1;letter-spacing:-.03em}
+  .stat-value.ok{color:var(--green)}.stat-value.warn{color:var(--yellow)}.stat-value.bad{color:var(--red)}
+  .stat-value.neutral{color:var(--text)}
+  .stat-pct{font-family:var(--mono);font-size:.8rem;color:var(--text-muted);margin-top:.35rem}
+  .stat-label{font-size:.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin-top:.5rem;font-weight:500}
+  .stat-divider{width:1px;background:var(--border-subtle);align-self:stretch;margin:.5rem 0}
 
-  .hero-timestamp{margin-top:1.2rem;font-size:.75rem;color:var(--text-muted);font-family:var(--mono)}
+  .probe-info{margin-bottom:2.5rem;font-size:.75rem;color:var(--text-muted);font-family:var(--mono)}
 
   /* ── Section ── */
   .section{margin-bottom:2.5rem}
   .section-title{font-size:.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.8rem;font-weight:500}
 
   /* ── Table ── */
-  .api-table{width:100%;border-collapse:separate;border-spacing:0}
-  .api-table th{text-align:left;font-size:.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;font-weight:500;padding:.6rem 1rem;border-bottom:1px solid var(--border)}
-  .api-table th:first-child{padding-left:0}
-  .api-table th:last-child{text-align:right}
-  .api-table td{padding:.85rem 1rem;border-bottom:1px solid var(--border-subtle);vertical-align:middle;transition:background .1s}
-  .api-table td:first-child{padding-left:0}
-  .api-table td:last-child{text-align:right}
-  .api-table tr:hover td{background:var(--surface)}
+  .api-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border-subtle)}
+  .api-table th{text-align:left;font-size:.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;font-weight:500;padding:.7rem 1.1rem;background:var(--surface);border-bottom:1px solid var(--border-subtle)}
+  .api-table th:first-child{padding-left:1.3rem}
+  .api-table th:last-child{text-align:right;padding-right:1.3rem}
+  .api-table td{padding:14px 1.1rem;vertical-align:middle}
+  .api-table td:first-child{padding-left:1.3rem}
+  .api-table td:last-child{text-align:right;padding-right:1.3rem}
+  .api-table tbody tr:nth-child(odd){background:var(--bg)}
+  .api-table tbody tr:nth-child(even){background:var(--surface-alt)}
+  .api-table tbody tr:hover{background:var(--surface)}
   .api-table tr:last-child td{border-bottom:none}
 
-  .api-name{font-weight:500;font-size:.9rem}
-  .api-sub{font-size:.75rem;color:var(--text-muted);margin-top:.15rem}
+  .api-name-cell{position:relative}
+  .api-name{font-weight:500;font-size:.88rem;cursor:default}
+  .api-name.has-error{text-decoration:underline dotted;text-decoration-color:rgba(239,68,68,.3);text-underline-offset:3px}
 
-  .status-badge{display:inline-flex;align-items:center;gap:.4rem;font-size:.75rem;font-weight:500;padding:.25rem .6rem;border-radius:6px}
-  .status-badge.ok{background:var(--green-dim);color:var(--green)}
-  .status-badge.error{background:var(--red-dim);color:var(--red)}
-  .status-badge.warn{background:var(--yellow-dim);color:var(--yellow)}
-  .status-badge.off{background:rgba(82,82,91,.1);color:var(--text-muted)}
-  .status-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-  .status-dot.ok{background:var(--green);box-shadow:0 0 8px rgba(34,197,94,.4)}
-  .status-dot.error{background:var(--red);box-shadow:0 0 8px rgba(239,68,68,.3)}
-  .status-dot.warn{background:var(--yellow);box-shadow:0 0 8px rgba(234,179,8,.3)}
-  .status-dot.off{background:var(--text-muted)}
+  /* Tooltip */
+  .tooltip-wrap{position:relative;display:inline-block}
+  .tooltip{position:absolute;bottom:calc(100% + 8px);left:0;background:#1a1a1f;border:1px solid var(--border);color:var(--text-secondary);padding:.4rem .65rem;border-radius:var(--radius-sm);font-size:.7rem;font-family:var(--mono);white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;z-index:20}
+  .tooltip-wrap:hover .tooltip{opacity:1}
 
-  .models-count{font-family:var(--mono);font-size:.85rem;font-weight:500}
-  .latency{font-family:var(--mono);font-size:.8rem;color:var(--text-secondary)}
-  .tier-badge{font-size:.65rem;padding:.15rem .45rem;border-radius:4px;font-family:var(--mono);font-weight:500}
-  .tier-badge.primary{background:rgba(167,139,250,.1);color:var(--purple)}
-  .tier-badge.fallback{background:rgba(82,82,91,.12);color:var(--text-muted)}
+  /* ── Status Pills ── */
+  .pill{display:inline-flex;align-items:center;gap:.45rem;font-size:.73rem;font-weight:500;padding:.3rem .7rem;border-radius:20px;border:1px solid}
+  .pill.online{background:var(--green-dim);color:var(--green);border-color:var(--green-border)}
+  .pill.error{background:var(--red-dim);color:var(--red);border-color:var(--red-border)}
+  .pill.warn{background:var(--yellow-dim);color:var(--yellow);border-color:var(--yellow-border)}
+  .pill.off{background:rgba(82,82,91,.06);color:var(--text-muted);border-color:rgba(82,82,91,.15)}
+  .pill-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+  .pill.online .pill-dot{background:var(--green);box-shadow:0 0 6px rgba(34,197,94,.5);animation:pulse-green 2s ease-in-out infinite}
+  .pill.error .pill-dot{background:var(--red)}
+  .pill.warn .pill-dot{background:var(--yellow)}
+  .pill.off .pill-dot{background:var(--text-muted)}
+  @keyframes pulse-green{0%,100%{box-shadow:0 0 4px rgba(34,197,94,.3)}50%{box-shadow:0 0 10px rgba(34,197,94,.6)}}
 
-  .error-text{font-size:.72rem;color:var(--red);opacity:.7;margin-top:.15rem;font-family:var(--mono)}
+  /* ── Latency ── */
+  .latency{font-family:var(--mono);font-size:.8rem}
+  .latency.fast{color:var(--green)}.latency.medium{color:var(--yellow)}.latency.slow{color:var(--red)}.latency.na{color:var(--text-muted)}
+
+  /* ── Models ── */
+  .models-count{font-family:var(--mono);font-size:.85rem;font-weight:500;color:var(--text)}
 
   /* ── Timeline ── */
   .timeline-wrap{background:var(--surface);border:1px solid var(--border-subtle);border-radius:var(--radius);padding:1.5rem}
@@ -96,13 +108,12 @@
   .timeline-legend span{font-size:.65rem;color:var(--text-muted);display:flex;align-items:center;gap:.3rem}
   .timeline-legend .dot{width:5px;height:5px;border-radius:50%}
   .timeline-legend .dot.ok{background:var(--green)}.timeline-legend .dot.partial{background:var(--yellow)}.timeline-legend .dot.bad{background:var(--red)}
-
   .timeline{display:flex;gap:2px;align-items:end;height:56px;padding:0 .5rem}
   .timeline-bar{flex:1;min-width:3px;max-width:10px;border-radius:2px 2px 0 0;transition:height .3s;cursor:default;position:relative}
   .timeline-bar.ok{background:var(--green);opacity:.7}.timeline-bar.ok:hover{opacity:1}
   .timeline-bar.partial{background:var(--yellow);opacity:.7}.timeline-bar.partial:hover{opacity:1}
   .timeline-bar.bad{background:var(--red);opacity:.7}.timeline-bar.bad:hover{opacity:1}
-  .timeline-bar::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--surface);border:1px solid var(--border);padding:.35rem .55rem;border-radius:var(--radius-sm);font-size:.65rem;white-space:nowrap;opacity:0;pointer-events:none;font-family:var(--mono);color:var(--text-secondary);transition:opacity .15s;z-index:10}
+  .timeline-bar::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#1a1a1f;border:1px solid var(--border);padding:.35rem .55rem;border-radius:var(--radius-sm);font-size:.65rem;white-space:nowrap;opacity:0;pointer-events:none;font-family:var(--mono);color:var(--text-secondary);transition:opacity .15s;z-index:10}
   .timeline-bar:hover::after{opacity:1}
   .timeline-labels{display:flex;justify-content:space-between;font-size:.6rem;color:var(--text-muted);margin-top:.6rem;padding:0 .5rem;font-family:var(--mono)}
 
@@ -110,18 +121,19 @@
   footer{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border-subtle);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;font-size:.7rem;color:var(--text-muted);font-family:var(--mono)}
 
   /* ── Loading ── */
-  .loading{text-align:center;padding:6rem 0;color:var(--text-muted);font-size:.85rem}
+  .loading{text-align:center;padding:4rem 0;color:var(--text-muted);font-size:.85rem}
   .loading::after{content:'';display:block;width:20px;height:20px;border:2px solid var(--border);border-top-color:var(--purple);border-radius:50%;animation:spin .7s linear infinite;margin:1rem auto 0}
   @keyframes spin{to{transform:rotate(360deg)}}
 
   @media(max-width:700px){
-    body{padding:1.5rem}
-    .hero-number{font-size:3rem}
-    .hero-stats{gap:1.2rem;flex-wrap:wrap}
-    .hero-divider{display:none}
-    .api-table{display:block}
+    body{padding:1.2rem}
+    .stats-row{flex-direction:column;gap:.7rem}
+    .stat-divider{display:none}
+    .stat-value{font-size:2rem}
+    .api-table{display:block;border:none}
     .api-table thead{display:none}
-    .api-table tr{display:flex;flex-wrap:wrap;gap:.3rem .8rem;padding:.8rem 0;border-bottom:1px solid var(--border-subtle)}
+    .api-table tbody{display:block}
+    .api-table tr{display:flex;flex-wrap:wrap;gap:.2rem .8rem;padding:1rem 1.2rem;border-bottom:1px solid var(--border-subtle)}
     .api-table td{border:none;padding:0}
     .api-table td:first-child{width:100%}
     .api-table td:last-child{text-align:left}
@@ -130,22 +142,21 @@
 </head>
 <body>
 
-<div class="hero" id="hero">
-  <div class="hero-top">
-    <h1>AI Control Center</h1>
-    <button class="refresh-btn" onclick="loadData()">↻ refresh</button>
-  </div>
-  <div class="hero-stats" id="hero-stats"></div>
-  <div class="hero-timestamp" id="timestamp"></div>
+<div class="header">
+  <h1>AI Control Center</h1>
+  <button class="refresh-btn" onclick="loadData()">↻ refresh</button>
 </div>
+
+<div class="stats-row" id="stats-row"></div>
+<div class="probe-info" id="probe-info"></div>
 
 <div class="section">
   <div class="section-title">Providers</div>
-  <table class="api-table" id="api-table">
+  <table class="api-table">
     <thead><tr>
-      <th>Service</th><th>Status</th><th>Models</th><th>Latency</th><th>Tier</th>
+      <th>Service</th><th>Status</th><th>Models</th><th style="text-align:right">Latency</th>
     </tr></thead>
-    <tbody id="api-tbody"><tr><td colspan="5"><div class="loading">connecting</div></td></tr></tbody>
+    <tbody id="api-tbody"><tr><td colspan="4"><div class="loading">connecting</div></td></tr></tbody>
   </table>
 </div>
 
@@ -165,39 +176,57 @@
 </div>
 
 <footer>
-  <span>auto-probes every 6h · github actions</span>
+  <span>probes every 1h · github actions</span>
   <span id="footer-meta"></span>
 </footer>
 
 <script>
 const S = {
-  ok:          { label:'Online',   cls:'ok' },
-  auth_error:  { label:'Auth',     cls:'error' },
-  down:        { label:'Down',     cls:'error' },
-  offline:     { label:'Offline',  cls:'off' },
-  no_key:      { label:'No key',   cls:'off' },
-  timeout:     { label:'Timeout',  cls:'warn' },
-  rate_limited:{ label:'Limited',  cls:'warn' },
-  error:       { label:'Error',    cls:'error' },
+  ok:          { label:'Online',  cls:'online' },
+  auth_error:  { label:'Auth Error', cls:'error' },
+  down:        { label:'Down',    cls:'error' },
+  offline:     { label:'Offline', cls:'off' },
+  no_key:      { label:'No Key',  cls:'off' },
+  timeout:     { label:'Timeout', cls:'warn' },
+  rate_limited:{ label:'Limited', cls:'warn' },
+  error:       { label:'Error',   cls:'error' },
 };
 
-function renderHero(s) {
-  const el = document.getElementById('hero-stats');
+function latencyClass(ms) {
+  if (ms == null) return 'na';
+  if (ms < 300) return 'fast';
+  if (ms <= 1000) return 'medium';
+  return 'slow';
+}
+
+function latencyText(ms) {
+  return ms != null ? `${Math.round(ms)}ms` : '—';
+}
+
+function renderStats(s) {
+  const el = document.getElementById('stats-row');
   const ratio = s.apis_ok / s.total_apis;
+  const pct = Math.round(ratio * 100);
   const numCls = ratio >= .7 ? 'ok' : ratio >= .4 ? 'warn' : 'bad';
-  const fraction = `${s.apis_ok}<span style="color:var(--text-muted);font-size:2.5rem;font-weight:400">/${s.total_apis}</span>`;
+  const pctLabel = ratio >= .7 ? 'operational' : ratio >= .4 ? 'degraded' : 'critical';
 
   el.innerHTML = `
-    <div>
-      <div class="hero-number ${numCls}">${fraction}</div>
-      <div class="hero-label">APIs online</div>
+    <div class="stat-card">
+      <div class="stat-value ${numCls}">${s.apis_ok}<span style="font-size:1.5rem;font-weight:400;color:var(--text-muted)">/${s.total_apis}</span></div>
+      <div class="stat-pct">${pct}% ${pctLabel}</div>
+      <div class="stat-label">APIs Online</div>
     </div>
-    <div class="hero-divider"></div>
-    <div class="hero-secondary">
-      <div class="row">
-        <div class="item"><span class="val">${s.total_models.toLocaleString()}</span><span class="lbl">Models</span></div>
-        <div class="item"><span class="val">${s.total_apis}</span><span class="lbl">Endpoints</span></div>
-      </div>
+    <div class="stat-divider"></div>
+    <div class="stat-card">
+      <div class="stat-value neutral">${s.total_models.toLocaleString()}</div>
+      <div class="stat-pct">&nbsp;</div>
+      <div class="stat-label">Total Models</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-card">
+      <div class="stat-value neutral">${s.total_apis}</div>
+      <div class="stat-pct">&nbsp;</div>
+      <div class="stat-label">Endpoints</div>
     </div>
   `;
 }
@@ -206,18 +235,17 @@ function renderTable(apis) {
   const tbody = document.getElementById('api-tbody');
   tbody.innerHTML = apis.map(a => {
     const sm = S[a.status] || S.error;
-    const statusHtml = `<span class="status-badge ${sm.cls}"><span class="status-dot ${sm.cls}"></span>${sm.label}</span>`;
-    const errHtml = a.error ? `<div class="error-text">${a.error}</div>` : '';
-    const tierHtml = a.tier === 'primary'
-      ? '<span class="tier-badge primary">primary</span>'
-      : '<span class="tier-badge fallback">fallback</span>';
-    const latency = a.response_ms != null ? `${Math.round(a.response_ms)}ms` : '—';
+    const pill = `<span class="pill ${sm.cls}"><span class="pill-dot"></span>${sm.label}</span>`;
+    const hasErr = !!a.error;
+    const nameHtml = hasErr
+      ? `<div class="api-name-cell tooltip-wrap"><span class="api-name has-error">${a.name}</span><div class="tooltip">${a.error}</div></div>`
+      : `<span class="api-name">${a.name}</span>`;
+    const lc = latencyClass(a.response_ms);
     return `<tr>
-      <td><div class="api-name">${a.name}</div>${errHtml}</td>
-      <td>${statusHtml}</td>
+      <td>${nameHtml}</td>
+      <td>${pill}</td>
       <td><span class="models-count">${a.model_count}</span></td>
-      <td><span class="latency">${latency}</span></td>
-      <td>${tierHtml}</td>
+      <td><span class="latency ${lc}">${latencyText(a.response_ms)}</span></td>
     </tr>`;
   }).join('');
 }
@@ -238,17 +266,14 @@ async function loadHistory() {
       } catch {}
     }
     if (!all.length) return;
-
-    const section = document.getElementById('history-section');
-    section.style.display = 'block';
+    document.getElementById('history-section').style.display = 'block';
 
     const sampled = all.length > 35
       ? all.filter((_, i) => i % Math.ceil(all.length / 35) === 0).slice(-35)
       : all;
     const max = Math.max(...sampled.map(e => e.summary.total_apis));
 
-    const el = document.getElementById('timeline');
-    el.innerHTML = sampled.map(e => {
+    document.getElementById('timeline').innerHTML = sampled.map(e => {
       const ratio = e.summary.apis_ok / max;
       const cls = ratio >= .8 ? 'ok' : ratio >= .5 ? 'partial' : 'bad';
       const h = Math.max(4, ratio * 56);
@@ -259,6 +284,19 @@ async function loadHistory() {
   } catch {}
 }
 
+function updateNextProbe(ts) {
+  const next = new Date(ts.getTime() + 3600000); // +1h
+  const now = new Date();
+  const diff = next - now;
+  const el = document.getElementById('footer-meta');
+  if (diff > 0) {
+    const m = Math.ceil(diff / 60000);
+    el.textContent = `next probe in ${m}m`;
+  } else {
+    el.textContent = 'probe overdue';
+  }
+}
+
 async function loadData() {
   try {
     const r = await fetch('data/latest.json');
@@ -266,27 +304,21 @@ async function loadData() {
     const d = await r.json();
 
     const t = new Date(d.timestamp);
-    document.getElementById('timestamp').textContent =
+    document.getElementById('probe-info').textContent =
       `last probe: ${t.toLocaleDateString('en',{weekday:'short',month:'short',day:'numeric'})} · ${t.toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'})} UTC`;
 
-    renderHero(d.summary);
+    renderStats(d.summary);
     renderTable(d.apis);
-
-    const latencies = d.apis.filter(a => a.response_ms).map(a => a.response_ms);
-    const avg = Math.round(latencies.reduce((a,b) => a+b, 0) / latencies.length);
-    document.getElementById('footer-meta').textContent = `avg ${avg}ms`;
-
+    updateNextProbe(t);
     loadHistory();
   } catch {
     document.getElementById('api-tbody').innerHTML =
-      '<tr><td colspan="5" style="text-align:center;padding:3rem;color:var(--text-muted);font-size:.85rem">No data yet — run <code style="color:var(--purple)">python3 scripts/probe_apis.py</code> or wait for the cron</td></tr>';
-    document.getElementById('timestamp').textContent = '';
+      '<tr><td colspan="4" style="text-align:center;padding:3rem;color:var(--text-muted);font-size:.85rem">No data yet — run <code style="color:var(--purple)">python3 scripts/probe_apis.py</code> or wait for the cron</td></tr>';
   }
 }
 
 loadData();
-setInterval(loadData, 300000);
+setInterval(loadData, 60000);
 </script>
 </body>
 </html>
-
