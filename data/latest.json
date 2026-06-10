@@ -1,11 +1,11 @@
 {
-  "timestamp": "2026-06-10T15:26:01.550963+00:00",
-  "timestamp_unix": 1781105161,
+  "timestamp": "2026-06-10T18:28:39.029886+00:00",
+  "timestamp_unix": 1781116119,
   "summary": {
     "total_apis": 10,
     "apis_ok": 7,
     "apis_down": 3,
-    "total_models": 778
+    "total_models": 777
   },
   "apis": [
     {
@@ -19,7 +19,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 1172.4,
+      "response_ms": 1089.9,
       "model_count": 10,
       "models": [
         "mimo-v2-flash",
@@ -46,7 +46,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 1146.3,
+      "response_ms": 1427.6,
       "model_count": 265,
       "models": [
         "ai21/jamba-large-1.7",
@@ -328,8 +328,8 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 184.4,
-      "model_count": 339,
+      "response_ms": 124.8,
+      "model_count": 338,
       "models": [
         "ai21/jamba-large-1.7",
         "aion-labs/aion-1.0",
@@ -477,7 +477,6 @@
         "moonshotai/kimi-k2-thinking",
         "moonshotai/kimi-k2.5",
         "moonshotai/kimi-k2.6",
-        "moonshotai/kimi-k2.6:free",
         "morph/morph-v3-fast",
         "morph/morph-v3-large",
         "nex-agi/nex-n2-pro:free",
@@ -685,7 +684,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 1150.9,
+      "response_ms": 180.5,
       "model_count": 50,
       "models": [
         "antigravity-preview-05-2026",
@@ -752,7 +751,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 265.0,
+      "response_ms": 112.6,
       "model_count": 16,
       "models": [
         "allam-2-7b",
@@ -785,7 +784,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 436.5,
+      "response_ms": 308.9,
       "model_count": 69,
       "models": [
         "codestral-2508",
@@ -871,7 +870,7 @@
       },
       "status": "rate_limited",
       "http_code": 429,
-      "response_ms": 1282.6,
+      "response_ms": 393.7,
       "model_count": 0,
       "models": [],
       "error": "Rate limited"
@@ -887,7 +886,7 @@
       },
       "status": "auth_error",
       "http_code": 401,
-      "response_ms": 2156.2,
+      "response_ms": 1022.6,
       "model_count": 0,
       "models": [],
       "error": "HTTP 401: invalid key"
@@ -903,7 +902,7 @@
       },
       "status": "auth_error",
       "http_code": 401,
-      "response_ms": 490.1,
+      "response_ms": 117.8,
       "model_count": 0,
       "models": [],
       "error": "HTTP 401: invalid key"
@@ -919,7 +918,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 1919.5,
+      "response_ms": 914.7,
       "model_count": 29,
       "models": [
         "claude-fable-5",
