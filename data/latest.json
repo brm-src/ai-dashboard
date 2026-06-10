@@ -1,11 +1,11 @@
 {
-  "timestamp": "2026-06-10T10:04:06.276471+00:00",
-  "timestamp_unix": 1781085846,
+  "timestamp": "2026-06-10T14:47:15.540613+00:00",
+  "timestamp_unix": 1781102835,
   "summary": {
-    "total_apis": 10,
-    "apis_ok": 6,
+    "total_apis": 11,
+    "apis_ok": 7,
     "apis_down": 4,
-    "total_models": 749
+    "total_models": 778
   },
   "apis": [
     {
@@ -19,7 +19,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 1156.4,
+      "response_ms": 2219.2,
       "model_count": 10,
       "models": [
         "mimo-v2-flash",
@@ -46,7 +46,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 1558.4,
+      "response_ms": 588.6,
       "model_count": 265,
       "models": [
         "ai21/jamba-large-1.7",
@@ -328,7 +328,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 93.5,
+      "response_ms": 175.7,
       "model_count": 339,
       "models": [
         "ai21/jamba-large-1.7",
@@ -684,7 +684,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 109.8,
+      "response_ms": 984.1,
       "model_count": 50,
       "models": [
         "antigravity-preview-05-2026",
@@ -751,7 +751,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 94.6,
+      "response_ms": 251.8,
       "model_count": 16,
       "models": [
         "allam-2-7b",
@@ -784,7 +784,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 198.6,
+      "response_ms": 506.1,
       "model_count": 69,
       "models": [
         "codestral-2508",
@@ -868,12 +868,12 @@
         "output": 3.75,
         "note": "Per 1M tokens"
       },
-      "status": "down",
-      "http_code": 503,
-      "response_ms": 259.8,
+      "status": "rate_limited",
+      "http_code": 429,
+      "response_ms": 678.6,
       "model_count": 0,
       "models": [],
-      "error": "HTTP 503: service unavailable"
+      "error": "Rate limited"
     },
     {
       "id": "dashscope",
@@ -886,7 +886,7 @@
       },
       "status": "auth_error",
       "http_code": 401,
-      "response_ms": 1017.9,
+      "response_ms": 1524.3,
       "model_count": 0,
       "models": [],
       "error": "HTTP 401: invalid key"
@@ -902,10 +902,56 @@
       },
       "status": "auth_error",
       "http_code": 401,
-      "response_ms": 74.1,
+      "response_ms": 298.9,
       "model_count": 0,
       "models": [],
       "error": "HTTP 401: invalid key"
+    },
+    {
+      "id": "b_ai",
+      "name": "b.ai",
+      "tier": "fallback",
+      "pricing": {
+        "input": null,
+        "output": null,
+        "note": "Multi-model aggregator"
+      },
+      "status": "ok",
+      "http_code": 200,
+      "response_ms": 1664.9,
+      "model_count": 29,
+      "models": [
+        "claude-fable-5",
+        "claude-haiku-4.5",
+        "claude-opus-4.5",
+        "claude-opus-4.6",
+        "claude-opus-4.7",
+        "claude-opus-4.8",
+        "claude-sonnet-4.5",
+        "claude-sonnet-4.6",
+        "deepseek-v3.2",
+        "deepseek-v4-flash",
+        "deepseek-v4-pro",
+        "gemini-3-flash",
+        "gemini-3.1-pro",
+        "gemini-3.5-flash",
+        "glm-5",
+        "glm-5.1",
+        "gpt-5-mini",
+        "gpt-5-nano",
+        "gpt-5.2",
+        "gpt-5.4",
+        "gpt-5.4-mini",
+        "gpt-5.4-nano",
+        "gpt-5.4-pro",
+        "gpt-5.5",
+        "gpt-5.5-instant",
+        "kimi-k2.5",
+        "minimax-m2.5",
+        "minimax-m2.7",
+        "minimax-m3"
+      ],
+      "error": null
     },
     {
       "id": "freellmapi",
@@ -921,7 +967,7 @@
       "response_ms": null,
       "model_count": 0,
       "models": [],
-      "error": "Service not running"
+      "error": "[Errno 111] Connection refused"
     }
   ]
 }

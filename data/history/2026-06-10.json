@@ -162,13 +162,13 @@
     ]
   },
   {
-    "timestamp": "2026-06-10T10:04:06.276471+00:00",
-    "timestamp_unix": 1781085846,
+    "timestamp": "2026-06-10T14:46:21.768425+00:00",
+    "timestamp_unix": 1781102781,
     "summary": {
-      "total_apis": 10,
-      "apis_ok": 6,
+      "total_apis": 11,
+      "apis_ok": 7,
       "apis_down": 4,
-      "total_models": 749
+      "total_models": 778
     },
     "apis": [
       {
@@ -182,7 +182,7 @@
         },
         "status": "ok",
         "http_code": 200,
-        "response_ms": 1156.4,
+        "response_ms": 1161.2,
         "model_count": 10,
         "error": null
       },
@@ -197,7 +197,7 @@
         },
         "status": "ok",
         "http_code": 200,
-        "response_ms": 1558.4,
+        "response_ms": 721.3,
         "model_count": 265,
         "error": null
       },
@@ -212,7 +212,7 @@
         },
         "status": "ok",
         "http_code": 200,
-        "response_ms": 93.5,
+        "response_ms": 180.1,
         "model_count": 339,
         "error": null
       },
@@ -227,7 +227,7 @@
         },
         "status": "ok",
         "http_code": 200,
-        "response_ms": 109.8,
+        "response_ms": 1007.6,
         "model_count": 50,
         "error": null
       },
@@ -242,7 +242,7 @@
         },
         "status": "ok",
         "http_code": 200,
-        "response_ms": 94.6,
+        "response_ms": 271.9,
         "model_count": 16,
         "error": null
       },
@@ -257,7 +257,7 @@
         },
         "status": "ok",
         "http_code": 200,
-        "response_ms": 198.6,
+        "response_ms": 431.8,
         "model_count": 69,
         "error": null
       },
@@ -270,11 +270,11 @@
           "output": 3.75,
           "note": "Per 1M tokens"
         },
-        "status": "down",
-        "http_code": 503,
-        "response_ms": 259.8,
+        "status": "rate_limited",
+        "http_code": 429,
+        "response_ms": 1119.5,
         "model_count": 0,
-        "error": "HTTP 503: service unavailable"
+        "error": "Rate limited"
       },
       {
         "id": "dashscope",
@@ -287,7 +287,7 @@
         },
         "status": "auth_error",
         "http_code": 401,
-        "response_ms": 1017.9,
+        "response_ms": 1745.8,
         "model_count": 0,
         "error": "HTTP 401: invalid key"
       },
@@ -302,9 +302,24 @@
         },
         "status": "auth_error",
         "http_code": 401,
-        "response_ms": 74.1,
+        "response_ms": 268.2,
         "model_count": 0,
         "error": "HTTP 401: invalid key"
+      },
+      {
+        "id": "b_ai",
+        "name": "b.ai",
+        "tier": "fallback",
+        "pricing": {
+          "input": null,
+          "output": null,
+          "note": "Multi-model aggregator"
+        },
+        "status": "ok",
+        "http_code": 200,
+        "response_ms": 1731.2,
+        "model_count": 29,
+        "error": null
       },
       {
         "id": "freellmapi",
@@ -319,7 +334,184 @@
         "http_code": null,
         "response_ms": null,
         "model_count": 0,
-        "error": "Service not running"
+        "error": "[Errno 111] Connection refused"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-10T14:47:15.540613+00:00",
+    "timestamp_unix": 1781102835,
+    "summary": {
+      "total_apis": 11,
+      "apis_ok": 7,
+      "apis_down": 4,
+      "total_models": 778
+    },
+    "apis": [
+      {
+        "id": "xiaomi",
+        "name": "Xiaomi (Mimo)",
+        "tier": "primary",
+        "pricing": {
+          "input": 0,
+          "output": 0,
+          "note": "Free tier"
+        },
+        "status": "ok",
+        "http_code": 200,
+        "response_ms": 2219.2,
+        "model_count": 10,
+        "error": null
+      },
+      {
+        "id": "nousresearch",
+        "name": "NousResearch",
+        "tier": "fallback",
+        "pricing": {
+          "input": 0,
+          "output": 0,
+          "note": "Portal credit"
+        },
+        "status": "ok",
+        "http_code": 200,
+        "response_ms": 588.6,
+        "model_count": 265,
+        "error": null
+      },
+      {
+        "id": "openrouter",
+        "name": "OpenRouter",
+        "tier": "fallback",
+        "pricing": {
+          "input": null,
+          "output": null,
+          "note": "Varies per model"
+        },
+        "status": "ok",
+        "http_code": 200,
+        "response_ms": 175.7,
+        "model_count": 339,
+        "error": null
+      },
+      {
+        "id": "google_gemini",
+        "name": "Google Gemini",
+        "tier": "fallback",
+        "pricing": {
+          "input": 0,
+          "output": 0,
+          "note": "Free tier"
+        },
+        "status": "ok",
+        "http_code": 200,
+        "response_ms": 984.1,
+        "model_count": 50,
+        "error": null
+      },
+      {
+        "id": "groq",
+        "name": "Groq",
+        "tier": "fallback",
+        "pricing": {
+          "input": 0,
+          "output": 0,
+          "note": "Free tier"
+        },
+        "status": "ok",
+        "http_code": 200,
+        "response_ms": 251.8,
+        "model_count": 16,
+        "error": null
+      },
+      {
+        "id": "mistral",
+        "name": "Mistral",
+        "tier": "fallback",
+        "pricing": {
+          "input": 0,
+          "output": 0,
+          "note": "Free tier"
+        },
+        "status": "ok",
+        "http_code": 200,
+        "response_ms": 506.1,
+        "model_count": 69,
+        "error": null
+      },
+      {
+        "id": "pioneer",
+        "name": "Pioneer.ai",
+        "tier": "fallback",
+        "pricing": {
+          "input": 1.25,
+          "output": 3.75,
+          "note": "Per 1M tokens"
+        },
+        "status": "rate_limited",
+        "http_code": 429,
+        "response_ms": 678.6,
+        "model_count": 0,
+        "error": "Rate limited"
+      },
+      {
+        "id": "dashscope",
+        "name": "DashScope (Qwen)",
+        "tier": "fallback",
+        "pricing": {
+          "input": null,
+          "output": null,
+          "note": "Varies"
+        },
+        "status": "auth_error",
+        "http_code": 401,
+        "response_ms": 1524.3,
+        "model_count": 0,
+        "error": "HTTP 401: invalid key"
+      },
+      {
+        "id": "openai",
+        "name": "OpenAI",
+        "tier": "fallback",
+        "pricing": {
+          "input": 2.5,
+          "output": 10,
+          "note": "Per 1M (gpt-4.1)"
+        },
+        "status": "auth_error",
+        "http_code": 401,
+        "response_ms": 298.9,
+        "model_count": 0,
+        "error": "HTTP 401: invalid key"
+      },
+      {
+        "id": "b_ai",
+        "name": "b.ai",
+        "tier": "fallback",
+        "pricing": {
+          "input": null,
+          "output": null,
+          "note": "Multi-model aggregator"
+        },
+        "status": "ok",
+        "http_code": 200,
+        "response_ms": 1664.9,
+        "model_count": 29,
+        "error": null
+      },
+      {
+        "id": "freellmapi",
+        "name": "FreeLLMAPI (local)",
+        "tier": "fallback",
+        "pricing": {
+          "input": 0,
+          "output": 0,
+          "note": "Self-hosted"
+        },
+        "status": "offline",
+        "http_code": null,
+        "response_ms": null,
+        "model_count": 0,
+        "error": "[Errno 111] Connection refused"
       }
     ]
   }

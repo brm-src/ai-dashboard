@@ -92,6 +92,15 @@ APIS = [
         "pricing": {"input": 2.5, "output": 10, "note": "Per 1M (gpt-4.1)"},
     },
     {
+        "id": "b_ai",
+        "name": "b.ai",
+        "url": "https://api.b.ai/v1/models",
+        "key_env": "B_AI_API_KEY",
+        "auth": "bearer",
+        "tier": "fallback",
+        "pricing": {"input": None, "output": None, "note": "Multi-model aggregator"},
+    },
+    {
         "id": "freellmapi",
         "name": "FreeLLMAPI (local)",
         "url": "http://localhost:3001/v1/models",
