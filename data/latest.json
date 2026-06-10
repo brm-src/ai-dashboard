@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-06-10T09:58:05.134501+00:00",
-  "timestamp_unix": 1781085485,
+  "timestamp": "2026-06-10T10:04:06.276471+00:00",
+  "timestamp_unix": 1781085846,
   "summary": {
     "total_apis": 10,
     "apis_ok": 6,
@@ -19,7 +19,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 1139.5,
+      "response_ms": 1156.4,
       "model_count": 10,
       "models": [
         "mimo-v2-flash",
@@ -46,7 +46,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 725.1,
+      "response_ms": 1558.4,
       "model_count": 265,
       "models": [
         "ai21/jamba-large-1.7",
@@ -328,7 +328,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 160.3,
+      "response_ms": 93.5,
       "model_count": 339,
       "models": [
         "ai21/jamba-large-1.7",
@@ -684,7 +684,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 983.1,
+      "response_ms": 109.8,
       "model_count": 50,
       "models": [
         "antigravity-preview-05-2026",
@@ -751,7 +751,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 279.6,
+      "response_ms": 94.6,
       "model_count": 16,
       "models": [
         "allam-2-7b",
@@ -784,7 +784,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 830.3,
+      "response_ms": 198.6,
       "model_count": 69,
       "models": [
         "codestral-2508",
@@ -870,7 +870,7 @@
       },
       "status": "down",
       "http_code": 503,
-      "response_ms": 890.9,
+      "response_ms": 259.8,
       "model_count": 0,
       "models": [],
       "error": "HTTP 503: service unavailable"
@@ -886,7 +886,7 @@
       },
       "status": "auth_error",
       "http_code": 401,
-      "response_ms": 1642.4,
+      "response_ms": 1017.9,
       "model_count": 0,
       "models": [],
       "error": "HTTP 401: invalid key"
@@ -902,7 +902,7 @@
       },
       "status": "auth_error",
       "http_code": 401,
-      "response_ms": 253.0,
+      "response_ms": 74.1,
       "model_count": 0,
       "models": [],
       "error": "HTTP 401: invalid key"
@@ -921,7 +921,7 @@
       "response_ms": null,
       "model_count": 0,
       "models": [],
-      "error": "[Errno 111] Connection refused"
+      "error": "Service not running"
     }
   ]
 }
