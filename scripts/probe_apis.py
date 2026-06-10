@@ -100,19 +100,31 @@ APIS = [
         "tier": "fallback",
         "pricing": {"input": None, "output": None, "note": "Multi-model aggregator"},
     },
-    {
-        "id": "freellmapi",
-        "name": "FreeLLMAPI (local)",
-        "url": "http://localhost:3001/v1/models",
-        "key_env": "FREELLMAPI_UNIFIED_KEY",
-        "auth": "bearer",
-        "tier": "fallback",
-        "pricing": {"input": 0, "output": 0, "note": "Self-hosted"},
-        "optional": True,
-    },
 ]
 
 ctx = ssl.create_default_context()
+
+
+def fetch_openrouter_balance():
+    """Fetch OpenRouter account balance (usage + limit)."""
+    key = os.environ.get("OPENROUTER_API_KEY", "")
+    if not key:
+        return None
+    headers = {"Authorization": f"Bearer {key}", "User-Agent": "ai-dashboard/1.0"}
+    req = urllib.request.Request("https://openrouter.ai/api/v1/auth/key", headers=headers, method="GET")
+    try:
+        resp = urllib.request.urlopen(req, timeout=10, context=ctx)
+        data = json.loads(resp.read().decode())
+        info = data.get("data", data)
+        return {
+            "usage": info.get("usage"),
+            "limit": info.get("limit"),
+            "label": info.get("label"),
+            "rate_limit": info.get("rate_limit"),
+        }
+    except Exception:
+        return None
+
 
 def probe_one(api_def):
     key = os.environ.get(api_def["key_env"], "")
@@ -210,6 +222,12 @@ def run_probe():
     ok_count = sum(1 for r in results if r["status"] == "ok")
     total_models = sum(r["model_count"] for r in results)
 
+    # Enrich OpenRouter with balance info
+    for r in results:
+        if r["id"] == "openrouter" and r["status"] == "ok":
+            r["balance"] = fetch_openrouter_balance()
+            break
+
     snapshot = {
         "timestamp": now.isoformat(),
         "timestamp_unix": int(now.timestamp()),
@@ -253,6 +271,17 @@ def save_snapshot(snapshot):
         json.dump(history, f, indent=2)
 
     print(f"\nSaved: data/latest.json + data/history/{date_str}.json")
+
+    # Prune history files older than 30 days
+    ts = datetime.fromisoformat(snapshot["timestamp"]).timestamp()
+    cutoff = ts - 30 * 86400
+    cutoff_str = datetime.fromtimestamp(cutoff, tz=timezone.utc).strftime("%Y-%m-%d")
+    history_dir = base / "history"
+    if history_dir.exists():
+        for f in history_dir.iterdir():
+            if f.suffix == ".json" and f.stem < cutoff_str:
+                f.unlink()
+                print(f"Pruned: {f.name}")
 
 
 if __name__ == "__main__":

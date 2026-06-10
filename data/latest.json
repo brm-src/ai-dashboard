@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-06-10T14:47:15.540613+00:00",
-  "timestamp_unix": 1781102835,
+  "timestamp": "2026-06-10T15:26:01.550963+00:00",
+  "timestamp_unix": 1781105161,
   "summary": {
-    "total_apis": 11,
+    "total_apis": 10,
     "apis_ok": 7,
-    "apis_down": 4,
+    "apis_down": 3,
     "total_models": 778
   },
   "apis": [
@@ -19,7 +19,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 2219.2,
+      "response_ms": 1172.4,
       "model_count": 10,
       "models": [
         "mimo-v2-flash",
@@ -46,7 +46,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 588.6,
+      "response_ms": 1146.3,
       "model_count": 265,
       "models": [
         "ai21/jamba-large-1.7",
@@ -328,7 +328,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 175.7,
+      "response_ms": 184.4,
       "model_count": 339,
       "models": [
         "ai21/jamba-large-1.7",
@@ -671,7 +671,8 @@
         "~openai/gpt-latest",
         "~openai/gpt-mini-latest"
       ],
-      "error": null
+      "error": null,
+      "balance": null
     },
     {
       "id": "google_gemini",
@@ -684,7 +685,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 984.1,
+      "response_ms": 1150.9,
       "model_count": 50,
       "models": [
         "antigravity-preview-05-2026",
@@ -751,7 +752,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 251.8,
+      "response_ms": 265.0,
       "model_count": 16,
       "models": [
         "allam-2-7b",
@@ -784,7 +785,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 506.1,
+      "response_ms": 436.5,
       "model_count": 69,
       "models": [
         "codestral-2508",
@@ -870,7 +871,7 @@
       },
       "status": "rate_limited",
       "http_code": 429,
-      "response_ms": 678.6,
+      "response_ms": 1282.6,
       "model_count": 0,
       "models": [],
       "error": "Rate limited"
@@ -886,7 +887,7 @@
       },
       "status": "auth_error",
       "http_code": 401,
-      "response_ms": 1524.3,
+      "response_ms": 2156.2,
       "model_count": 0,
       "models": [],
       "error": "HTTP 401: invalid key"
@@ -902,7 +903,7 @@
       },
       "status": "auth_error",
       "http_code": 401,
-      "response_ms": 298.9,
+      "response_ms": 490.1,
       "model_count": 0,
       "models": [],
       "error": "HTTP 401: invalid key"
@@ -918,7 +919,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 1664.9,
+      "response_ms": 1919.5,
       "model_count": 29,
       "models": [
         "claude-fable-5",
@@ -952,22 +953,6 @@
         "minimax-m3"
       ],
       "error": null
-    },
-    {
-      "id": "freellmapi",
-      "name": "FreeLLMAPI (local)",
-      "tier": "fallback",
-      "pricing": {
-        "input": 0,
-        "output": 0,
-        "note": "Self-hosted"
-      },
-      "status": "offline",
-      "http_code": null,
-      "response_ms": null,
-      "model_count": 0,
-      "models": [],
-      "error": "[Errno 111] Connection refused"
     }
   ]
 }
