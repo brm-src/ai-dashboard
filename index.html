@@ -7,252 +7,284 @@
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   :root{
-    --bg:#08080a;--surface:#0f0f12;--border:#1a1a1f;--border-light:#252530;
-    --text:#e4e4e7;--muted:#71717a;--dim:#3f3f46;
-    --green:#22c55e;--red:#ef4444;--yellow:#eab308;--blue:#3b82f6;
-    --purple:#a78bfa;--cyan:#06b6d4;
+    --bg:#09090b;
+    --surface:#111113;
+    --surface-hover:#18181b;
+    --border:#27272a;
+    --border-subtle:#1e1e22;
+    --text:#fafafa;
+    --text-secondary:#a1a1aa;
+    --text-muted:#52525b;
+    --green:#22c55e;
+    --green-dim:rgba(34,197,94,.08);
+    --red:#ef4444;
+    --red-dim:rgba(239,68,68,.08);
+    --yellow:#eab308;
+    --yellow-dim:rgba(234,179,8,.08);
+    --blue:#3b82f6;
+    --purple:#a78bfa;
+    --radius:16px;
+    --radius-sm:10px;
     --font:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',system-ui,sans-serif;
-    --mono:'SF Mono','Fira Code','Cascadia Code',monospace;
-    --radius:12px;
+    --mono:'SF Mono','Fira Code','Cascadia Code','JetBrains Mono',monospace;
   }
-  html{font-size:15px}
-  body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;padding:2rem;max-width:1200px;margin:0 auto}
-  a{color:var(--purple);text-decoration:none}
+  html{font-size:16px;-webkit-font-smoothing:antialiased}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;padding:2.5rem;max-width:960px;margin:0 auto;line-height:1.5}
 
-  /* ── Header ── */
-  header{margin-bottom:2.5rem}
-  h1{font-size:1.6rem;font-weight:600;letter-spacing:-.02em;margin-bottom:.3rem}
-  h1 span{color:var(--muted);font-weight:400}
-  .subtitle{color:var(--muted);font-size:.85rem;font-family:var(--mono)}
+  /* ── Hero ── */
+  .hero{margin-bottom:3rem}
+  .hero-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem}
+  .hero h1{font-size:1.1rem;font-weight:500;color:var(--text-secondary);letter-spacing:-.01em}
+  .refresh-btn{background:var(--surface);border:1px solid var(--border);color:var(--text-muted);padding:.45rem .9rem;border-radius:var(--radius-sm);font-size:.8rem;cursor:pointer;font-family:var(--mono);transition:all .15s}
+  .refresh-btn:hover{border-color:var(--text-muted);color:var(--text-secondary)}
 
-  /* ── Summary Bar ── */
-  .summary{display:flex;gap:1.5rem;margin-bottom:2rem;flex-wrap:wrap}
-  .stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.4rem;min-width:140px}
-  .stat-value{font-size:1.8rem;font-weight:700;font-family:var(--mono);line-height:1}
-  .stat-label{color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;margin-top:.4rem}
-  .stat-value.green{color:var(--green)}.stat-value.red{color:var(--red)}.stat-value.purple{color:var(--purple)}
+  .hero-stats{display:flex;gap:2rem;align-items:flex-end}
+  .hero-number{font-size:4.5rem;font-weight:700;line-height:1;letter-spacing:-.04em;font-family:var(--mono)}
+  .hero-number.ok{color:var(--green)}.hero-number.warn{color:var(--yellow)}.hero-number.bad{color:var(--red)}
+  .hero-label{font-size:.8rem;color:var(--text-muted);margin-top:.3rem}
+  .hero-divider{width:1px;height:48px;background:var(--border);align-self:center}
+  .hero-secondary{display:flex;flex-direction:column;gap:.8rem}
+  .hero-secondary .row{display:flex;gap:1.5rem}
+  .hero-secondary .item{display:flex;flex-direction:column}
+  .hero-secondary .val{font-size:1.5rem;font-weight:600;font-family:var(--mono);line-height:1}
+  .hero-secondary .lbl{font-size:.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin-top:.2rem}
 
-  /* ── Grid ── */
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1rem;margin-bottom:2.5rem}
+  .hero-timestamp{margin-top:1.2rem;font-size:.75rem;color:var(--text-muted);font-family:var(--mono)}
 
-  /* ── Card ── */
-  .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem 1.4rem;transition:border-color .2s;position:relative;overflow:hidden}
-  .card:hover{border-color:var(--border-light)}
-  .card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
-  .card.ok::before{background:var(--green)}.card.error::before{background:var(--red)}
-  .card.warning::before{background:var(--yellow)}.card.off::before{background:var(--dim)}
+  /* ── Section ── */
+  .section{margin-bottom:2.5rem}
+  .section-title{font-size:.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.8rem;font-weight:500}
 
-  .card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.8rem}
-  .card-name{font-weight:600;font-size:.95rem}
-  .status-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:6px;margin-left:8px}
-  .status-dot.ok{background:var(--green);box-shadow:0 0 6px var(--green)}
-  .status-dot.error{background:var(--red);box-shadow:0 0 6px var(--red)}
-  .status-dot.warning{background:var(--yellow);box-shadow:0 0 6px var(--yellow)}
-  .status-dot.off{background:var(--dim)}
+  /* ── Table ── */
+  .api-table{width:100%;border-collapse:separate;border-spacing:0}
+  .api-table th{text-align:left;font-size:.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;font-weight:500;padding:.6rem 1rem;border-bottom:1px solid var(--border)}
+  .api-table th:first-child{padding-left:0}
+  .api-table th:last-child{text-align:right}
+  .api-table td{padding:.85rem 1rem;border-bottom:1px solid var(--border-subtle);vertical-align:middle;transition:background .1s}
+  .api-table td:first-child{padding-left:0}
+  .api-table td:last-child{text-align:right}
+  .api-table tr:hover td{background:var(--surface)}
+  .api-table tr:last-child td{border-bottom:none}
 
-  .card-meta{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:.6rem}
-  .badge{font-size:.7rem;padding:.15rem .5rem;border-radius:6px;font-family:var(--mono);font-weight:500}
-  .badge.primary{background:rgba(167,139,250,.12);color:var(--purple);border:1px solid rgba(167,139,250,.2)}
-  .badge.fallback{background:rgba(59,130,246,.1);color:var(--blue);border:1px solid rgba(59,130,246,.2)}
-  .badge.free{background:rgba(34,197,94,.1);color:var(--green);border:1px solid rgba(34,197,94,.15)}
-  .badge.paid{background:rgba(234,179,8,.1);color:var(--yellow);border:1px solid rgba(234,179,8,.15)}
+  .api-name{font-weight:500;font-size:.9rem}
+  .api-sub{font-size:.75rem;color:var(--text-muted);margin-top:.15rem}
 
-  .card-stats{display:flex;gap:1.2rem;font-size:.8rem;color:var(--muted)}
-  .card-stats span{font-family:var(--mono)}
-  .card-stats .val{color:var(--text);font-weight:500}
+  .status-badge{display:inline-flex;align-items:center;gap:.4rem;font-size:.75rem;font-weight:500;padding:.25rem .6rem;border-radius:6px}
+  .status-badge.ok{background:var(--green-dim);color:var(--green)}
+  .status-badge.error{background:var(--red-dim);color:var(--red)}
+  .status-badge.warn{background:var(--yellow-dim);color:var(--yellow)}
+  .status-badge.off{background:rgba(82,82,91,.1);color:var(--text-muted)}
+  .status-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+  .status-dot.ok{background:var(--green);box-shadow:0 0 8px rgba(34,197,94,.4)}
+  .status-dot.error{background:var(--red);box-shadow:0 0 8px rgba(239,68,68,.3)}
+  .status-dot.warn{background:var(--yellow);box-shadow:0 0 8px rgba(234,179,8,.3)}
+  .status-dot.off{background:var(--text-muted)}
 
-  .card-error{color:var(--red);font-size:.75rem;margin-top:.4rem;font-family:var(--mono);opacity:.8}
+  .models-count{font-family:var(--mono);font-size:.85rem;font-weight:500}
+  .latency{font-family:var(--mono);font-size:.8rem;color:var(--text-secondary)}
+  .tier-badge{font-size:.65rem;padding:.15rem .45rem;border-radius:4px;font-family:var(--mono);font-weight:500}
+  .tier-badge.primary{background:rgba(167,139,250,.1);color:var(--purple)}
+  .tier-badge.fallback{background:rgba(82,82,91,.12);color:var(--text-muted)}
 
-  /* ── History ── */
-  .history-section{margin-top:1rem}
-  .history-section h2{font-size:1.1rem;font-weight:600;margin-bottom:1rem;color:var(--muted)}
-  .timeline{display:flex;gap:3px;align-items:end;height:48px}
-  .timeline-bar{flex:1;min-width:4px;max-width:12px;border-radius:2px 2px 0 0;transition:height .3s;cursor:default;position:relative}
-  .timeline-bar.ok{background:var(--green)}.timeline-bar.partial{background:var(--yellow)}.timeline-bar.bad{background:var(--red)}.timeline-bar.none{background:var(--dim)}
-  .timeline-bar:hover{opacity:.7}
-  .timeline-bar::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:var(--surface);border:1px solid var(--border);padding:.3rem .5rem;border-radius:6px;font-size:.65rem;white-space:nowrap;opacity:0;pointer-events:none;font-family:var(--mono);transition:opacity .15s}
+  .error-text{font-size:.72rem;color:var(--red);opacity:.7;margin-top:.15rem;font-family:var(--mono)}
+
+  /* ── Timeline ── */
+  .timeline-wrap{background:var(--surface);border:1px solid var(--border-subtle);border-radius:var(--radius);padding:1.5rem}
+  .timeline-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
+  .timeline-header h3{font-size:.8rem;font-weight:500;color:var(--text-secondary)}
+  .timeline-legend{display:flex;gap:1rem}
+  .timeline-legend span{font-size:.65rem;color:var(--text-muted);display:flex;align-items:center;gap:.3rem}
+  .timeline-legend .dot{width:5px;height:5px;border-radius:50%}
+  .timeline-legend .dot.ok{background:var(--green)}.timeline-legend .dot.partial{background:var(--yellow)}.timeline-legend .dot.bad{background:var(--red)}
+
+  .timeline{display:flex;gap:2px;align-items:end;height:56px;padding:0 .5rem}
+  .timeline-bar{flex:1;min-width:3px;max-width:10px;border-radius:2px 2px 0 0;transition:height .3s;cursor:default;position:relative}
+  .timeline-bar.ok{background:var(--green);opacity:.7}.timeline-bar.ok:hover{opacity:1}
+  .timeline-bar.partial{background:var(--yellow);opacity:.7}.timeline-bar.partial:hover{opacity:1}
+  .timeline-bar.bad{background:var(--red);opacity:.7}.timeline-bar.bad:hover{opacity:1}
+  .timeline-bar::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--surface);border:1px solid var(--border);padding:.35rem .55rem;border-radius:var(--radius-sm);font-size:.65rem;white-space:nowrap;opacity:0;pointer-events:none;font-family:var(--mono);color:var(--text-secondary);transition:opacity .15s;z-index:10}
   .timeline-bar:hover::after{opacity:1}
-  .history-labels{display:flex;justify-content:space-between;font-size:.65rem;color:var(--dim);margin-top:.3rem;font-family:var(--mono)}
+  .timeline-labels{display:flex;justify-content:space-between;font-size:.6rem;color:var(--text-muted);margin-top:.6rem;padding:0 .5rem;font-family:var(--mono)}
 
   /* ── Footer ── */
-  footer{margin-top:3rem;color:var(--dim);font-size:.75rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+  footer{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border-subtle);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;font-size:.7rem;color:var(--text-muted);font-family:var(--mono)}
 
   /* ── Loading ── */
-  .loading{text-align:center;padding:4rem;color:var(--muted)}
-  .loading::after{content:'';display:inline-block;width:1.2rem;height:1.2rem;border:2px solid var(--border);border-top-color:var(--purple);border-radius:50%;animation:spin .6s linear infinite;margin-left:.5rem;vertical-align:middle}
+  .loading{text-align:center;padding:6rem 0;color:var(--text-muted);font-size:.85rem}
+  .loading::after{content:'';display:block;width:20px;height:20px;border:2px solid var(--border);border-top-color:var(--purple);border-radius:50%;animation:spin .7s linear infinite;margin:1rem auto 0}
   @keyframes spin{to{transform:rotate(360deg)}}
 
-  /* ── Refresh btn ── */
-  .refresh{background:none;border:1px solid var(--border);color:var(--muted);padding:.4rem .8rem;border-radius:8px;font-size:.75rem;cursor:pointer;font-family:var(--mono);transition:all .15s}
-  .refresh:hover{border-color:var(--purple);color:var(--purple)}
-
-  @media(max-width:640px){
-    body{padding:1rem}
-    .summary{gap:.8rem}
-    .stat{min-width:100px;padding:.8rem 1rem}
-    .stat-value{font-size:1.4rem}
-    .grid{grid-template-columns:1fr}
+  @media(max-width:700px){
+    body{padding:1.5rem}
+    .hero-number{font-size:3rem}
+    .hero-stats{gap:1.2rem;flex-wrap:wrap}
+    .hero-divider{display:none}
+    .api-table{display:block}
+    .api-table thead{display:none}
+    .api-table tr{display:flex;flex-wrap:wrap;gap:.3rem .8rem;padding:.8rem 0;border-bottom:1px solid var(--border-subtle)}
+    .api-table td{border:none;padding:0}
+    .api-table td:first-child{width:100%}
+    .api-table td:last-child{text-align:left}
   }
 </style>
 </head>
 <body>
 
-<header>
-  <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.5rem">
-    <div>
-      <h1>AI Control Center <span>v1</span></h1>
-      <div class="subtitle" id="timestamp">loading...</div>
-    </div>
-    <button class="refresh" onclick="loadData()">refresh</button>
+<div class="hero" id="hero">
+  <div class="hero-top">
+    <h1>AI Control Center</h1>
+    <button class="refresh-btn" onclick="loadData()">↻ refresh</button>
   </div>
-</header>
+  <div class="hero-stats" id="hero-stats"></div>
+  <div class="hero-timestamp" id="timestamp"></div>
+</div>
 
-<div class="summary" id="summary"></div>
-<div class="grid" id="grid"><div class="loading">probing APIs</div></div>
+<div class="section">
+  <div class="section-title">Providers</div>
+  <table class="api-table" id="api-table">
+    <thead><tr>
+      <th>Service</th><th>Status</th><th>Models</th><th>Latency</th><th>Tier</th>
+    </tr></thead>
+    <tbody id="api-tbody"><tr><td colspan="5"><div class="loading">connecting</div></td></tr></tbody>
+  </table>
+</div>
 
-<div class="history-section" id="history-section">
-  <h2>Uptime (last 7 days)</h2>
-  <div class="timeline" id="timeline"></div>
-  <div class="history-labels"><span>7 days ago</span><span>now</span></div>
+<div class="section" id="history-section" style="display:none">
+  <div class="timeline-wrap">
+    <div class="timeline-header">
+      <h3>Uptime · last 7 days</h3>
+      <div class="timeline-legend">
+        <span><span class="dot ok"></span>healthy</span>
+        <span><span class="dot partial"></span>partial</span>
+        <span><span class="dot bad"></span>down</span>
+      </div>
+    </div>
+    <div class="timeline" id="timeline"></div>
+    <div class="timeline-labels"><span>7d ago</span><span>now</span></div>
+  </div>
 </div>
 
 <footer>
-  <span>auto-refreshes every 6h via GitHub Actions</span>
+  <span>auto-probes every 6h · github actions</span>
   <span id="footer-meta"></span>
 </footer>
 
 <script>
-const STATUS_MAP = {
-  ok:         { cls:'ok',      dot:'ok',      label:'Online' },
-  auth_error: { cls:'error',   dot:'error',   label:'Auth Error' },
-  down:       { cls:'error',   dot:'error',   label:'Down' },
-  offline:    { cls:'off',     dot:'off',     label:'Offline' },
-  no_key:     { cls:'off',     dot:'off',     label:'No Key' },
-  timeout:    { cls:'warning', dot:'warning', label:'Timeout' },
-  rate_limited:{cls:'warning', dot:'warning', label:'Rate Limited' },
-  error:      { cls:'error',   dot:'error',   label:'Error' },
+const S = {
+  ok:          { label:'Online',   cls:'ok' },
+  auth_error:  { label:'Auth',     cls:'error' },
+  down:        { label:'Down',     cls:'error' },
+  offline:     { label:'Offline',  cls:'off' },
+  no_key:      { label:'No key',   cls:'off' },
+  timeout:     { label:'Timeout',  cls:'warn' },
+  rate_limited:{ label:'Limited',  cls:'warn' },
+  error:       { label:'Error',    cls:'error' },
 };
 
-function renderSummary(s) {
-  const el = document.getElementById('summary');
+function renderHero(s) {
+  const el = document.getElementById('hero-stats');
+  const ratio = s.apis_ok / s.total_apis;
+  const numCls = ratio >= .7 ? 'ok' : ratio >= .4 ? 'warn' : 'bad';
+  const fraction = `${s.apis_ok}<span style="color:var(--text-muted);font-size:2.5rem;font-weight:400">/${s.total_apis}</span>`;
+
   el.innerHTML = `
-    <div class="stat"><div class="stat-value green">${s.apis_ok}</div><div class="stat-label">APIs Online</div></div>
-    <div class="stat"><div class="stat-value red">${s.apis_down}</div><div class="stat-label">Down / Error</div></div>
-    <div class="stat"><div class="stat-value purple">${s.total_models.toLocaleString()}</div><div class="stat-label">Total Models</div></div>
-    <div class="stat"><div class="stat-value">${s.total_apis}</div><div class="stat-label">Configured</div></div>
+    <div>
+      <div class="hero-number ${numCls}">${fraction}</div>
+      <div class="hero-label">APIs online</div>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-secondary">
+      <div class="row">
+        <div class="item"><span class="val">${s.total_models.toLocaleString()}</span><span class="lbl">Models</span></div>
+        <div class="item"><span class="val">${s.total_apis}</span><span class="lbl">Endpoints</span></div>
+      </div>
+    </div>
   `;
 }
 
-function renderCards(apis) {
-  const el = document.getElementById('grid');
-  el.innerHTML = apis.map(a => {
-    const sm = STATUS_MAP[a.status] || STATUS_MAP.error;
-    const tierBadge = a.tier === 'primary'
-      ? '<span class="badge primary">primary</span>'
-      : '<span class="badge fallback">fallback</span>';
-    const priceBadge = (a.pricing && a.pricing.input === 0)
-      ? '<span class="badge free">free</span>'
-      : (a.pricing && a.pricing.input != null)
-        ? `<span class="badge paid">$${a.pricing.input}/$${a.pricing.output} per 1M</span>`
-        : '';
-    const errHtml = a.error ? `<div class="card-error">${a.error}</div>` : '';
-    return `
-      <div class="card ${sm.cls}">
-        <div class="card-header">
-          <div class="card-name">${a.name}</div>
-          <div class="status-dot ${sm.dot}" title="${sm.label}"></div>
-        </div>
-        <div class="card-meta">${tierBadge}${priceBadge}</div>
-        <div class="card-stats">
-          <div>models <span class="val">${a.model_count}</span></div>
-          <div>latency <span class="val">${a.response_ms != null ? a.response_ms + 'ms' : '—'}</span></div>
-          <div>HTTP <span class="val">${a.http_code || '—'}</span></div>
-        </div>
-        ${errHtml}
-      </div>
-    `;
+function renderTable(apis) {
+  const tbody = document.getElementById('api-tbody');
+  tbody.innerHTML = apis.map(a => {
+    const sm = S[a.status] || S.error;
+    const statusHtml = `<span class="status-badge ${sm.cls}"><span class="status-dot ${sm.cls}"></span>${sm.label}</span>`;
+    const errHtml = a.error ? `<div class="error-text">${a.error}</div>` : '';
+    const tierHtml = a.tier === 'primary'
+      ? '<span class="tier-badge primary">primary</span>'
+      : '<span class="tier-badge fallback">fallback</span>';
+    const latency = a.response_ms != null ? `${Math.round(a.response_ms)}ms` : '—';
+    return `<tr>
+      <td><div class="api-name">${a.name}</div>${errHtml}</td>
+      <td>${statusHtml}</td>
+      <td><span class="models-count">${a.model_count}</span></td>
+      <td><span class="latency">${latency}</span></td>
+      <td>${tierHtml}</td>
+    </tr>`;
   }).join('');
 }
 
 async function loadHistory() {
-  const el = document.getElementById('timeline');
   try {
-    // Try to load last 7 days of history
     const now = new Date();
     const days = [];
     for (let i = 6; i >= 0; i--) {
-      const d = new Date(now);
-      d.setDate(d.getDate() - i);
+      const d = new Date(now); d.setDate(d.getDate() - i);
       days.push(d.toISOString().split('T')[0]);
     }
-
-    let allEntries = [];
+    let all = [];
     for (const day of days) {
       try {
         const r = await fetch(`data/history/${day}.json`);
-        if (r.ok) {
-          const entries = await r.json();
-          allEntries = allEntries.concat(entries);
-        }
+        if (r.ok) all = all.concat(await r.json());
       } catch {}
     }
+    if (!all.length) return;
 
-    if (allEntries.length === 0) {
-      el.innerHTML = '<div style="color:var(--dim);font-size:.8rem">No history data yet — will populate after first GitHub Actions run</div>';
-      return;
-    }
+    const section = document.getElementById('history-section');
+    section.style.display = 'block';
 
-    // Sample entries (max 28 bars = 4 per day * 7 days)
-    const sampled = allEntries.length > 28
-      ? allEntries.filter((_, i) => i % Math.ceil(allEntries.length / 28) === 0).slice(-28)
-      : allEntries;
+    const sampled = all.length > 35
+      ? all.filter((_, i) => i % Math.ceil(all.length / 35) === 0).slice(-35)
+      : all;
+    const max = Math.max(...sampled.map(e => e.summary.total_apis));
 
-    const maxApis = Math.max(...sampled.map(e => e.summary.total_apis));
-
+    const el = document.getElementById('timeline');
     el.innerHTML = sampled.map(e => {
-      const ratio = e.summary.apis_ok / maxApis;
-      const cls = ratio >= 0.8 ? 'ok' : ratio >= 0.5 ? 'partial' : 'bad';
-      const h = Math.max(4, ratio * 48);
-      const time = new Date(e.timestamp).toLocaleString('en', { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' });
-      return `<div class="timeline-bar ${cls}" style="height:${h}px" data-tip="${time}: ${e.summary.apis_ok}/${e.summary.total_apis} OK"></div>`;
+      const ratio = e.summary.apis_ok / max;
+      const cls = ratio >= .8 ? 'ok' : ratio >= .5 ? 'partial' : 'bad';
+      const h = Math.max(4, ratio * 56);
+      const t = new Date(e.timestamp);
+      const tip = `${t.toLocaleDateString('en',{month:'short',day:'numeric'})} ${t.toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'})}`;
+      return `<div class="timeline-bar ${cls}" style="height:${h}px" data-tip="${tip} · ${e.summary.apis_ok}/${e.summary.total_apis}"></div>`;
     }).join('');
-  } catch {
-    el.innerHTML = '<div style="color:var(--dim);font-size:.8rem">History unavailable</div>';
-  }
+  } catch {}
 }
 
 async function loadData() {
   try {
     const r = await fetch('data/latest.json');
-    if (!r.ok) throw new Error('No data');
+    if (!r.ok) throw new Error();
     const d = await r.json();
 
+    const t = new Date(d.timestamp);
     document.getElementById('timestamp').textContent =
-      new Date(d.timestamp).toLocaleString('en', {
-        weekday:'short', month:'short', day:'numeric',
-        hour:'2-digit', minute:'2-digit', timeZoneName:'short'
-      });
+      `last probe: ${t.toLocaleDateString('en',{weekday:'short',month:'short',day:'numeric'})} · ${t.toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'})} UTC`;
 
-    renderSummary(d.summary);
-    renderCards(d.apis);
+    renderHero(d.summary);
+    renderTable(d.apis);
 
-    const avgLatency = Math.round(
-      d.apis.filter(a => a.response_ms).reduce((s, a) => s + a.response_ms, 0) /
-      d.apis.filter(a => a.response_ms).length
-    );
-    document.getElementById('footer-meta').textContent =
-      `avg latency: ${avgLatency}ms · probed ${d.apis.length} endpoints`;
+    const latencies = d.apis.filter(a => a.response_ms).map(a => a.response_ms);
+    const avg = Math.round(latencies.reduce((a,b) => a+b, 0) / latencies.length);
+    document.getElementById('footer-meta').textContent = `avg ${avg}ms`;
 
     loadHistory();
   } catch {
-    document.getElementById('grid').innerHTML =
-      '<div style="text-align:center;padding:3rem;color:var(--muted)">No data yet. Run <code style="color:var(--purple)">python3 scripts/probe_apis.py</code> or wait for the first cron job.</div>';
-    document.getElementById('timestamp').textContent = 'no data';
+    document.getElementById('api-tbody').innerHTML =
+      '<tr><td colspan="5" style="text-align:center;padding:3rem;color:var(--text-muted);font-size:.85rem">No data yet — run <code style="color:var(--purple)">python3 scripts/probe_apis.py</code> or wait for the cron</td></tr>';
+    document.getElementById('timestamp').textContent = '';
   }
 }
 
 loadData();
-// Auto-refresh every 5 minutes (in case tab stays open)
 setInterval(loadData, 300000);
 </script>
 </body>
