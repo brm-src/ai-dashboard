@@ -1,0 +1,164 @@
+[
+  {
+    "timestamp": "2026-06-10T09:58:05.134501+00:00",
+    "timestamp_unix": 1781085485,
+    "summary": {
+      "total_apis": 10,
+      "apis_ok": 6,
+      "apis_down": 4,
+      "total_models": 749
+    },
+    "apis": [
+      {
+        "id": "xiaomi",
+        "name": "Xiaomi (Mimo)",
+        "tier": "primary",
+        "pricing": {
+          "input": 0,
+          "output": 0,
+          "note": "Free tier"
+        },
+        "status": "ok",
+        "http_code": 200,
+        "response_ms": 1139.5,
+        "model_count": 10,
+        "error": null
+      },
+      {
+        "id": "nousresearch",
+        "name": "NousResearch",
+        "tier": "fallback",
+        "pricing": {
+          "input": 0,
+          "output": 0,
+          "note": "Portal credit"
+        },
+        "status": "ok",
+        "http_code": 200,
+        "response_ms": 725.1,
+        "model_count": 265,
+        "error": null
+      },
+      {
+        "id": "openrouter",
+        "name": "OpenRouter",
+        "tier": "fallback",
+        "pricing": {
+          "input": null,
+          "output": null,
+          "note": "Varies per model"
+        },
+        "status": "ok",
+        "http_code": 200,
+        "response_ms": 160.3,
+        "model_count": 339,
+        "error": null
+      },
+      {
+        "id": "google_gemini",
+        "name": "Google Gemini",
+        "tier": "fallback",
+        "pricing": {
+          "input": 0,
+          "output": 0,
+          "note": "Free tier"
+        },
+        "status": "ok",
+        "http_code": 200,
+        "response_ms": 983.1,
+        "model_count": 50,
+        "error": null
+      },
+      {
+        "id": "groq",
+        "name": "Groq",
+        "tier": "fallback",
+        "pricing": {
+          "input": 0,
+          "output": 0,
+          "note": "Free tier"
+        },
+        "status": "ok",
+        "http_code": 200,
+        "response_ms": 279.6,
+        "model_count": 16,
+        "error": null
+      },
+      {
+        "id": "mistral",
+        "name": "Mistral",
+        "tier": "fallback",
+        "pricing": {
+          "input": 0,
+          "output": 0,
+          "note": "Free tier"
+        },
+        "status": "ok",
+        "http_code": 200,
+        "response_ms": 830.3,
+        "model_count": 69,
+        "error": null
+      },
+      {
+        "id": "pioneer",
+        "name": "Pioneer.ai",
+        "tier": "fallback",
+        "pricing": {
+          "input": 1.25,
+          "output": 3.75,
+          "note": "Per 1M tokens"
+        },
+        "status": "down",
+        "http_code": 503,
+        "response_ms": 890.9,
+        "model_count": 0,
+        "error": "HTTP 503: service unavailable"
+      },
+      {
+        "id": "dashscope",
+        "name": "DashScope (Qwen)",
+        "tier": "fallback",
+        "pricing": {
+          "input": null,
+          "output": null,
+          "note": "Varies"
+        },
+        "status": "auth_error",
+        "http_code": 401,
+        "response_ms": 1642.4,
+        "model_count": 0,
+        "error": "HTTP 401: invalid key"
+      },
+      {
+        "id": "openai",
+        "name": "OpenAI",
+        "tier": "fallback",
+        "pricing": {
+          "input": 2.5,
+          "output": 10,
+          "note": "Per 1M (gpt-4.1)"
+        },
+        "status": "auth_error",
+        "http_code": 401,
+        "response_ms": 253.0,
+        "model_count": 0,
+        "error": "HTTP 401: invalid key"
+      },
+      {
+        "id": "freellmapi",
+        "name": "FreeLLMAPI (local)",
+        "tier": "fallback",
+        "pricing": {
+          "input": 0,
+          "output": 0,
+          "note": "Self-hosted"
+        },
+        "status": "offline",
+        "http_code": null,
+        "response_ms": null,
+        "model_count": 0,
+        "error": "[Errno 111] Connection refused"
+      }
+    ]
+  }
+]
