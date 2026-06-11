@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-06-10T23:23:07.161088+00:00",
-  "timestamp_unix": 1781133787,
+  "timestamp": "2026-06-11T03:32:06.958982+00:00",
+  "timestamp_unix": 1781148726,
   "summary": {
     "total_apis": 10,
     "apis_ok": 7,
@@ -19,7 +19,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 1374.5,
+      "response_ms": 1476.0,
       "model_count": 10,
       "models": [
         "mimo-v2-flash",
@@ -46,7 +46,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 1118.3,
+      "response_ms": 895.4,
       "model_count": 265,
       "models": [
         "ai21/jamba-large-1.7",
@@ -328,7 +328,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 171.5,
+      "response_ms": 102.0,
       "model_count": 338,
       "models": [
         "ai21/jamba-large-1.7",
@@ -684,7 +684,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 162.5,
+      "response_ms": 111.0,
       "model_count": 50,
       "models": [
         "antigravity-preview-05-2026",
@@ -751,7 +751,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 187.6,
+      "response_ms": 91.2,
       "model_count": 16,
       "models": [
         "allam-2-7b",
@@ -784,7 +784,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 295.1,
+      "response_ms": 202.6,
       "model_count": 69,
       "models": [
         "codestral-2508",
@@ -870,7 +870,7 @@
       },
       "status": "rate_limited",
       "http_code": 429,
-      "response_ms": 514.2,
+      "response_ms": 303.9,
       "model_count": 0,
       "models": [],
       "error": "Rate limited"
@@ -886,7 +886,7 @@
       },
       "status": "auth_error",
       "http_code": 401,
-      "response_ms": 895.2,
+      "response_ms": 1146.9,
       "model_count": 0,
       "models": [],
       "error": "HTTP 401: invalid key"
@@ -902,7 +902,7 @@
       },
       "status": "auth_error",
       "http_code": 401,
-      "response_ms": 94.2,
+      "response_ms": 89.8,
       "model_count": 0,
       "models": [],
       "error": "HTTP 401: invalid key"
@@ -918,7 +918,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 994.7,
+      "response_ms": 928.0,
       "model_count": 29,
       "models": [
         "claude-fable-5",
