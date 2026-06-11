@@ -1,11 +1,11 @@
 {
-  "timestamp": "2026-06-11T12:41:29.103585+00:00",
-  "timestamp_unix": 1781181689,
+  "timestamp": "2026-06-11T16:50:30.964745+00:00",
+  "timestamp_unix": 1781196630,
   "summary": {
     "total_apis": 10,
     "apis_ok": 8,
     "apis_down": 2,
-    "total_models": 847
+    "total_models": 845
   },
   "apis": [
     {
@@ -19,7 +19,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 1205.2,
+      "response_ms": 1497.1,
       "model_count": 10,
       "models": [
         "mimo-v2-flash",
@@ -46,8 +46,8 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 1060.4,
-      "model_count": 265,
+      "response_ms": 1102.1,
+      "model_count": 264,
       "models": [
         "ai21/jamba-large-1.7",
         "amazon/nova-2-lite-v1",
@@ -164,7 +164,6 @@
         "nvidia/nemotron-3-super-120b-a12b",
         "nvidia/nemotron-3-ultra-550b-a55b",
         "nvidia/nemotron-3-ultra:free",
-        "nvidia/nemotron-nano-9b-v2",
         "openai/gpt-3.5-turbo",
         "openai/gpt-3.5-turbo-0613",
         "openai/gpt-3.5-turbo-16k",
@@ -328,8 +327,8 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 137.2,
-      "model_count": 338,
+      "response_ms": 109.9,
+      "model_count": 337,
       "models": [
         "ai21/jamba-large-1.7",
         "aion-labs/aion-1.0",
@@ -495,7 +494,6 @@
         "nvidia/nemotron-3-ultra-550b-a55b:free",
         "nvidia/nemotron-3.5-content-safety:free",
         "nvidia/nemotron-nano-12b-v2-vl:free",
-        "nvidia/nemotron-nano-9b-v2",
         "nvidia/nemotron-nano-9b-v2:free",
         "openai/gpt-3.5-turbo",
         "openai/gpt-3.5-turbo-0613",
@@ -684,7 +682,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 109.1,
+      "response_ms": 119.4,
       "model_count": 50,
       "models": [
         "antigravity-preview-05-2026",
@@ -751,7 +749,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 178.0,
+      "response_ms": 98.2,
       "model_count": 16,
       "models": [
         "allam-2-7b",
@@ -784,7 +782,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 184.9,
+      "response_ms": 198.5,
       "model_count": 69,
       "models": [
         "codestral-2508",
@@ -870,7 +868,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 544.8,
+      "response_ms": 671.1,
       "model_count": 70,
       "models": [
         "HuggingFaceTB/SmolLM3-3B-Base",
@@ -957,7 +955,7 @@
       },
       "status": "auth_error",
       "http_code": 401,
-      "response_ms": 1123.6,
+      "response_ms": 1048.1,
       "model_count": 0,
       "models": [],
       "error": "HTTP 401: invalid key"
@@ -973,7 +971,7 @@
       },
       "status": "auth_error",
       "http_code": 401,
-      "response_ms": 73.6,
+      "response_ms": 107.3,
       "model_count": 0,
       "models": [],
       "error": "HTTP 401: invalid key"
@@ -989,7 +987,7 @@
       },
       "status": "ok",
       "http_code": 200,
-      "response_ms": 971.0,
+      "response_ms": 932.5,
       "model_count": 29,
       "models": [
         "claude-fable-5",
